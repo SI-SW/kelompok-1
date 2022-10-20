@@ -38,7 +38,6 @@
             <router-link
               :to="{ name: 'Signin' }"
               class="px-0 nav-link font-weight-bold text-white"
-              target="_blank"
             >
               <i
                 class="fa fa-user"
@@ -47,7 +46,7 @@
               <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
                 >يسجل دخول</span
               >
-              <span v-else class="d-sm-inline d-none">Sign In</span>
+              <span v-else class="d-sm-inline d-none">Nama</span>
             </router-link>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -94,7 +93,7 @@
                   <div class="py-1 d-flex">
                     <div class="my-auto">
                       <img
-                        src="../../assets/img/team-2.jpg"
+                        src="@/assets/img/team-2.jpg"
                         class="avatar avatar-sm me-3"
                         alt="user image"
                       />
@@ -117,7 +116,7 @@
                   <div class="py-1 d-flex">
                     <div class="my-auto">
                       <img
-                        src="../../assets/img/small-logos/logo-spotify.svg"
+                        src="@/assets/img/small-logos/logo-spotify.svg"
                         class="avatar avatar-sm bg-gradient-dark me-3"
                         alt="logo spotify"
                       />
@@ -205,7 +204,7 @@ export default {
   name: "navbar",
   data() {
     return {
-      showMenu: false
+      showMenu: false,
     };
   },
   props: ["minNav", "textWhite"],
@@ -219,15 +218,15 @@ export default {
     toggleSidebar() {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
-    }
+    },
   },
   components: {
-    Breadcrumbs
+    Breadcrumbs,
   },
   computed: {
     currentRouteName() {
       return this.$route.name;
-    }
-  }
+    },
+  },
 };
 </script>
