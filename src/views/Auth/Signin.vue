@@ -124,7 +124,7 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(d$auth, ["a$login"]),
+    ...mapActions(d$auth, ["a$login", "a$logout"]),
     async submitLogin() {
       try {
         await this.a$login({ ...this.input });
@@ -133,6 +133,13 @@ export default {
       } catch (e) {
         alert("Error in entering data");
         console.error("method addlist error", e);
+      }
+    },
+    async logout() {
+      try {
+        this.a$logout();
+      } catch (error) {
+        console.log(error);
       }
     },
   },

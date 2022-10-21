@@ -88,12 +88,24 @@
           </template>
         </sidenav-item>
       </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" @click="logout">
+          <div
+            class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center"
+          >
+            <i class="ni ni-fat-remove text-warning text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1 text-warning">Sign Out</span>
+        </a>
+      </li>
     </ul>
   </div>
 </template>
 <script>
 import SidenavItem from "./SidenavItem.vue";
 import SidenavCard from "./SidenavCard.vue";
+import { mapActions } from "pinia";
+import d$auth from "@/stores/auth";
 
 export default {
   name: "SidenavList",
@@ -115,6 +127,16 @@ export default {
     getRoute() {
       const routeArr = this.$route.path.split("/");
       return routeArr[1];
+    },
+    ...mapActions(d$auth, ["a$logout"]),
+    logout() {
+      try {
+        this.a$logout();
+        alert("Logout Successfully");
+        this.$router.replace({ name: "Signin" });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
