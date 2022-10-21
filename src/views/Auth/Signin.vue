@@ -62,10 +62,9 @@
                   <p class="mx-auto mb-4 text-sm">
                     Don't have an account?
                     <a
-                      href="signup"
+                      href="javascript:;"
                       class="text-success text-gradient font-weight-bold"
-                      >Sign up</a>
-                      <!-- <router-link to="signup" class="text-success text-gradient font-weight-bold" >Sign up</router-link> -->
+                      >Sign up</a
                     >
                   </p>
                 </div>
