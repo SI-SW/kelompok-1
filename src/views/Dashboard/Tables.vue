@@ -9,7 +9,7 @@
                 <h6>To Do List Table</h6>
               </div>
               <div class="col-6 text-end">
-                <form @submit.prevent="onSubmit" method="post">
+                <form @submit.prevent="onSubmit" method="post" onclick="">
                   <BootstrapModal :visible="false" variant="dark">
                     <template v-slot:body>
                       <ArgonInput
@@ -210,7 +210,7 @@ export default {
     async onSubmit() {
       try {
         await this.a$add({ ...this.input });
-        this.$router.replace({ name: "Tables" });
+        this.$router.go(this.$router.currentRoute);
       } catch (error) {
         console.error("method addlist error", error);
       }
