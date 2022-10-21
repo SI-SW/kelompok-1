@@ -24,7 +24,7 @@
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form @submit.prevent="submitLogin">
+                  <form @submit.prevent="submitLogin" role="form">
                     <div class="mb-3">
                       <argon-input
                         v-model="input.username"
@@ -128,9 +128,11 @@ export default {
     async submitLogin() {
       try {
         await this.a$login({ ...this.input });
+        alert("Signin Successfully");
         this.$router.replace({ name: "Default" });
       } catch (e) {
-        console.error(e);
+        alert("Error in entering data");
+        console.error("method addlist error", e);
       }
     },
   },
