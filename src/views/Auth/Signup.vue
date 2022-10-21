@@ -143,10 +143,35 @@
               </div>
             </div>
             <div class="card-body">
-              <form @submit.prevent="handleSubmit" method="post" role="form">
-                <argon-input type="text" placeholder="Name" name="name" v-model="input.name"  aria-label="Name" />
-                <argon-input type="email" placeholder="Email" v-model="input.email" aria-label="Email" />
-                <argon-input type="password" placeholder="Password" v-model="input.password" aria-label="Password" /> -->
+              <form @submit.prevent="handleSubmit" role="form">
+                <!-- <argon-input type="text" placeholder="Name" name="name" v-model="name"  aria-label="Name" /> -->
+                <!-- <argon-input type="email" placeholder="Email" v-model="email" aria-label="Email" />
+                <argon-input type="password" placeholder="Password" v-model="password" aria-label="Password" /> -->
+
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  aria-label="Name"
+                  v-model="name"
+                />
+                <input
+                  class="form-control mb-3"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  aria-label="Email"
+                  v-model="email"
+                />
+                <input
+                  class="form-control mb-3"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  aria-label="Password"
+                  v-model="password"
+                />
                 <argon-checkbox checked>
                   <label class="form-check-label" for="flexCheckDefault">
                     I agree the
@@ -166,7 +191,7 @@
                 </div>
                 <p class="text-sm mt-3 mb-0">
                   Already have an account?
-                  <a href="signin" class="text-dark font-weight-bolder"
+                  <a href="javascript:;" class="text-dark font-weight-bolder"
                     >Sign in</a
                   >
                 </p>
@@ -181,9 +206,6 @@
 </template>
 
 <script>
-import { mapActions } from "pinia";
-import d$auth from "@/stores/auth";
-
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
@@ -204,47 +226,34 @@ export default {
   },
   data() {
     return {
-      //input
-      input: {
-        name: "",
-        email: "",
-        password: "",
-      },
+      name: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
-    ...mapActions(d$auth, ["a$register"]),
-    async handleSubmit(){
-      try {
-        await this.a$register({ ...this.input });
+    async handleSubmit() {
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const response = await axios
+        .post("https://be.tautan.ml/auth/register", data, { headers })
+        .then((res) => {
           alert("Register Successfully");
           this.$router.push('signin') 
-      } catch (error) {
-        console.error("method addlist error", error);
-      }
-    }
-    // async handleSubmit() {
-    //   const data = {
-    //     name: this.input.name,
-    //     email: this.email,
-    //     password: this.password,
-    //   };
-    //   const headers = {
-    //     "Content-Type": "application/json",
-    //   };
-
-    //   const response = await axios
-    //     .post("https://be.tautan.ml/auth/register", data, { headers })
-    //     .then((res) => {
-    //       alert("Register Successfully");
-    //       this.$router.push('signin') 
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       
-    //     console.log(response);
-    // },
+        console.log(response);
+    },
   },
 
   created() {
