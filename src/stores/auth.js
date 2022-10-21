@@ -33,7 +33,15 @@ const d$auth = defineStore({
             } catch ({ error, message }) {
                 throw message ?? error;
             }
-        }
+        },
+        async a$register(body) {
+            try {
+              await s$auth.register(body);
+            } catch (e) {
+              console.error("Register Error", e);
+              throw e;
+            }
+          },
     },
     getters: {
         g$user: ({ id, name, role }) => ({ id, name, role }),
