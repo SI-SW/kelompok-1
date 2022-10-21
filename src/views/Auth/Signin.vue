@@ -62,7 +62,7 @@
                   <p class="mx-auto mb-4 text-sm">
                     Don't have an account?
                     <a
-                      href="javascript:;"
+                      href="signup"
                       class="text-success text-gradient font-weight-bold"
                       >Sign up</a
                     >
