@@ -12,7 +12,7 @@ const d$auth = defineStore({
     actions: {
         async a$setUser() {
             try {
-                const { id, name, role } = certCookies;
+                const { id, name, role } = certCookies();
                 this.id = id;
                 this.name = name;
                 this.role = role;
