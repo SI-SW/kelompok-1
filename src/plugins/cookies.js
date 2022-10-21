@@ -1,5 +1,6 @@
-import parseJwt from '@/plugins/parseJwt';
+import parseJwt from "@/plugins/parseJwt";
 
+// menyimpan cookies
 const setCookies = (name, value, { datetime }) => {
   const d = new Date();
   if (datetime) d.setTime(datetime);
@@ -7,21 +8,24 @@ const setCookies = (name, value, { datetime }) => {
   document.cookie = `${name}=${value};${expires};path=/;`;
 };
 
+// memanggil cookies
 const getCookies = (name) => {
   const cookies = `; ${document.cookie}`;
   const byValue = cookies.split(`; ${name}=`);
-  if (byValue.length === 2) return byValue.pop().split(';').shift();
+  if (byValue.length === 2) return byValue.pop().split(";").shift();
 };
 
+// menghapus cookies
 const delCookies = (name) => {
-  setCookies(name, '', -1);
+  setCookies(name, "", -1);
 };
 
+// menyediakan hasil parse json
 const certCookies = () => {
-  const token = getCookies('CERT');
+  const token = getCookies("CERT");
   if (token) {
     const { id, n: name, ri: role, exp } = parseJwt(token);
-    if (!id) return delCookies('CERT');
+    if (!id) return delCookies("CERT");
     return {
       id,
       name,
