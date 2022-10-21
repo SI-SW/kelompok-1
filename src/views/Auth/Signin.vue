@@ -15,7 +15,9 @@
       <div class="page-header min-vh-100">
         <div class="container">
           <div class="row">
-            <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0">
+            <div
+              class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0"
+            >
               <div class="card card-plain">
                 <div class="pb-0 card-header text-start">
                   <h4 class="font-weight-bolder">Sign In</h4>
@@ -24,10 +26,22 @@
                 <div class="card-body">
                   <form @submit.prevent="submitLogin">
                     <div class="mb-3">
-                      <argon-input v-model="input.username" type="email" placeholder="Email" name="email" size="lg" />
+                      <argon-input
+                        v-model="input.username"
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        size="lg"
+                      />
                     </div>
                     <div class="mb-3">
-                      <argon-input v-model="input.password" type="password" placeholder="Password" name="password" size="lg" />
+                      <argon-input
+                        v-model="input.password"
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        size="lg"
+                      />
                     </div>
                     <argon-switch id="rememberMe">Remember me</argon-switch>
 
@@ -39,7 +53,8 @@
                         fullWidth
                         size="lg"
                         type="submit"
-                      >Sign in</argon-button>
+                        >Sign in</argon-button
+                      >
                     </div>
                   </form>
                 </div>
@@ -49,7 +64,8 @@
                     <a
                       href="javascript:;"
                       class="text-success text-gradient font-weight-bold"
-                    >Sign up</a>
+                      >Sign up</a
+                    >
                   </p>
                 </div>
               </div>
@@ -59,16 +75,21 @@
             >
               <div
                 class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
-          background-size: cover;"
+                style="
+                  background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+                  background-size: cover;
+                "
               >
                 <span class="mask bg-gradient-success opacity-6"></span>
                 <h4
                   class="mt-5 text-white font-weight-bolder position-relative"
-                >"Attention is the new currency"</h4>
-                <p
-                  class="text-white position-relative"
-                >The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+                >
+                  "Attention is the new currency"
+                </h4>
+                <p class="text-white position-relative">
+                  The more effortless the writing looks, the more effort the
+                  writer actually put into the process.
+                </p>
               </div>
             </div>
           </div>
@@ -79,9 +100,8 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia';
-import d$auth from '@/store/auth';
-
+import { mapActions } from "pinia";
+import d$auth from "@/stores/auth";
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonSwitch from "@/components/ArgonSwitch.vue";
@@ -96,19 +116,19 @@ export default {
     ArgonSwitch,
     ArgonButton,
   },
-  data:() => ({
+  data: () => ({
     input: {
       // Input
-      username: '',
-      password: '',
-    }
+      username: "",
+      password: "",
+    },
   }),
   methods: {
-    ...mapActions(d$auth, ['a$login']),
+    ...mapActions(d$auth, ["a$login"]),
     async submitLogin() {
       try {
-        await this.a$login({ ...this.input});
-        this.$router.replace({ name: 'Default'});
+        await this.a$login({ ...this.input });
+        this.$router.replace({ name: "Default" });
       } catch (e) {
         console.error(e);
       }
