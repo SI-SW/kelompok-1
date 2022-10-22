@@ -56,8 +56,29 @@
                     </td>
                     <td class="align-middle">
                       <div class="ms-auto text-center">
-                        <RouterLink class="btn btn-brand ms-lg-3" :to="{ name: 'update', params: { id: item.id } }"> <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</RouterLink>
-                        <button @click.prevent="deleteTodo(item.id)" class="btn btn-brand ms-lg-3 text-danger"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</button>
+
+                        <RouterLink
+                          class="btn btn-brand ms-lg-3"
+                          :to="{ name: 'update', params: { id: item.id } }"
+                        >
+                          <i
+                            class="fas fa-pencil-alt text-dark me-2"
+                            aria-hidden="true"
+                          ></i
+                          >Edit</RouterLink
+                        >
+                        <button
+                          class="btn btn-brand text-danger text-gradient ms-lg-2"
+                          href="javascript:;"
+                          @click.prevent="deleteTodo(item.id)"
+                        >
+                          <i
+                            class="far fa-trash-alt me-2"
+                            aria-hidden="true"
+                          ></i
+                          >Delete
+                        </button>
+
                       </div>
                     </td>
                   </tr>
@@ -79,6 +100,7 @@
 </template>
 
 <script>
+
 import AuthorsTable from '@/components/example/AuthorsTable.vue';
 import ProjectsTable from '@/components/example/ProjectsTable.vue';
 import d$todo from '@/stores/dashboard/todo';
@@ -88,6 +110,7 @@ import BootstrapModal from '../../components/BootstrapModal.vue';
 import ArgonInput from '../../components/ArgonInput.vue';
 import ArgonPagination from '../../components/ArgonPagination.vue';
 import ArgonPaginationItem from '../../components/ArgonPaginationItem.vue';
+
 
 export default {
   name: 'tables',

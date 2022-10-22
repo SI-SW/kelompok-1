@@ -37,7 +37,7 @@
   </div>
   <button type="button" @click="openCloseFun()" :class="'btn btn-' + variant">
     <i class="fas fa-plus me-2"></i>
-    Open Modal
+    Create Todo
   </button>
 </template>
 <script>
