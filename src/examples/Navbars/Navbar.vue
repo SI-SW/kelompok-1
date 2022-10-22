@@ -35,19 +35,10 @@
         </div>
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item d-flex align-items-center">
-            <router-link
-              :to="{ name: 'Signin' }"
-              class="px-0 nav-link font-weight-bold text-white"
-            >
-              <i
-                class="fa fa-user"
-                :class="this.$store.state.isRTL ? 'ms-sm-2' : 'me-sm-2'"
-              ></i>
-              <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
-                >يسجل دخول</span
-              >
-              <span v-else class="d-sm-inline d-none">Nama</span>
-            </router-link>
+            <a class="px-0 nav-link font-weight-bold text-white">
+              <li class="fa fa-user me-sm-2" aria-hidden="true"></li>
+              <span class="d-sm-inline d-none">{{ g$user.name }}</span>
+            </a>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a
@@ -198,8 +189,9 @@
 </template>
 <script>
 import Breadcrumbs from "../Breadcrumbs.vue";
-import { mapMutations, mapActions } from "vuex";
-
+import { mapMutations } from "vuex";
+import { mapActions, mapState } from "pinia";
+import d$auth from "@/stores/auth";
 export default {
   name: "navbar",
   data() {
@@ -213,11 +205,19 @@ export default {
   },
   methods: {
     ...mapMutations(["navbarMinimize", "toggleConfigurator"]),
-    ...mapActions(["toggleSidebarColor"]),
+    ...mapActions(d$auth, ["toggleSidebarColor", "a$setUser"]),
 
     toggleSidebar() {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
+    },
+
+    async getUser() {
+      try {
+        await this.a$setUser;
+      } catch (error) {
+        console.error("method getUser error", error);
+      }
     },
   },
   components: {
@@ -227,6 +227,10 @@ export default {
     currentRouteName() {
       return this.$route.name;
     },
+    ...mapState(d$auth, ["g$user"]),
+  },
+  async created() {
+    await this.a$setUser();
   },
 };
 </script>

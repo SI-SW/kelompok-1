@@ -95,7 +95,7 @@
           >
             <i class="ni ni-fat-remove text-warning text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1 text-warning">Sign Out</span>
+          <span class="nav-link-text ms-1 text-warning">Logout</span>
         </a>
       </li>
     </ul>
@@ -131,9 +131,11 @@ export default {
     ...mapActions(d$auth, ["a$logout"]),
     logout() {
       try {
-        this.a$logout();
-        alert("Logout Successfully");
-        this.$router.replace({ name: "Signin" });
+        if (confirm("Are you sure you want to leave?") == true) {
+          this.a$logout();
+        } else {
+          this.$router.replace(this.$router.currentRoute);
+        }
       } catch (error) {
         console.log(error);
       }

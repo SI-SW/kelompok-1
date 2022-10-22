@@ -124,7 +124,7 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(d$auth, ["a$login", "a$logout"]),
+    ...mapActions(d$auth, ["a$login", "a$logout", "a$setUser"]),
     async submitLogin() {
       try {
         await this.a$login({ ...this.input });
@@ -140,6 +140,13 @@ export default {
         this.a$logout();
       } catch (error) {
         console.log(error);
+      }
+    },
+    showUser() {
+      try {
+        this.a$setUser();
+      } catch (error) {
+        console.log("user error", error);
       }
     },
   },

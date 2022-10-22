@@ -25,8 +25,8 @@
             </div>
             <div class="col-auto my-auto">
               <div class="h-100">
-                <h5 class="mb-1">Sayo Kravits</h5>
-                <p class="mb-0 font-weight-bold text-sm">Public Relations</p>
+                <h5 class="mb-1">{{ g$user.name }}</h5>
+                <p class="mb-0 font-weight-bold text-sm">{{ g$user.id }}</p>
               </div>
             </div>
             <div
@@ -298,6 +298,8 @@ import setTooltip from "@/assets/js/tooltip.js";
 import ProfileCard from "@/components/example/ProfileCard.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
+import { mapActions, mapState } from "pinia";
+import d$auth from "@/stores/auth";
 
 const body = document.getElementsByTagName("body")[0];
 
@@ -308,6 +310,7 @@ export default {
       showMenu: false,
     };
   },
+
   components: { ProfileCard, ArgonInput, ArgonButton },
 
   mounted() {
@@ -315,6 +318,7 @@ export default {
     setNavPills();
     setTooltip();
   },
+
   beforeMount() {
     this.$store.state.imageLayout = "profile-overview";
     this.$store.state.showNavbar = false;
@@ -329,6 +333,25 @@ export default {
     this.$store.state.showFooter = true;
     this.$store.state.hideConfigButton = false;
     body.classList.remove("profile-overview");
+  },
+
+  methods: {
+    ...mapActions(d$auth, ["a$setUser"]),
+    async getUser() {
+      try {
+        await this.a$setUser;
+      } catch (error) {
+        console.error("method getUser error", error);
+      }
+    },
+  },
+
+  computed: {
+    ...mapState(d$auth, ["g$user"]),
+  },
+
+  async created() {
+    await this.a$setUser();
   },
 };
 </script>
