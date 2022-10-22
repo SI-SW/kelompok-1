@@ -12,11 +12,33 @@
                 <form @submit.prevent="onSubmit" method="post" onclick="">
                   <BootstrapModal :visible="false" variant="dark">
                     <template v-slot:body>
-                      <ArgonInput type="text" v-model="input.name" placeholder="input name" name="name" size="md" />
-                      <ArgonInput type="text" v-model="input.description" placeholder="input description" name="description" size="md" />
-                      <ArgonInput type="text" v-model="input.category" placeholder="input category" name="category" size="md" />
+                      <ArgonInput
+                        type="text"
+                        v-model="input.name"
+                        placeholder="input name"
+                        name="name"
+                        size="md"
+                      />
+                      <ArgonInput
+                        type="text"
+                        v-model="input.description"
+                        placeholder="input description"
+                        name="description"
+                        size="md"
+                      />
+                      <ArgonInput
+                        type="text"
+                        v-model="input.category"
+                        placeholder="input category"
+                        name="category"
+                        size="md"
+                      />
                     </template>
-                    <template v-slot:footer> <button type="submit" class="btn btn-primary">Submit</button></template>
+                    <template v-slot:footer>
+                      <button type="submit" class="btn btn-primary">
+                        Submit
+                      </button></template
+                    >
                   </BootstrapModal>
                 </form>
               </div>
@@ -27,15 +49,42 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Create At</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Nama
+                    </th>
+                    <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                    >
+                      Description
+                    </th>
+                    <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Create At
+                    </th>
+                    <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item, index) in g$list" :key="index">
+                  <tr v-if="!g$list.length">
+                    <td colspan="5" class="text-center">Data Masih kosong</td>
+                  </tr>
+                  <tr
+                    v-for="(item, index) in g$list"
+                    :key="index"
+                    v-else="g$list.length"
+                  >
                     <td>
                       <div class="d-flex px-3 py-1">
                         <div class="d-flex flex-column justify-content-center">
@@ -49,14 +98,17 @@
                       </p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-primary">{{ item.status }}</span>
+                      <span class="badge badge-sm bg-gradient-primary">{{
+                        item.status
+                      }}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ item.createdAt }}</span>
+                      <span class="text-secondary text-xs font-weight-bold">{{
+                        item.createdAt
+                      }}</span>
                     </td>
                     <td class="align-middle">
                       <div class="ms-auto text-center">
-
                         <RouterLink
                           class="btn btn-brand ms-lg-3"
                           :to="{ name: 'update', params: { id: item.id } }"
@@ -78,7 +130,6 @@
                           ></i
                           >Delete
                         </button>
-
                       </div>
                     </td>
                   </tr>
@@ -100,20 +151,18 @@
 </template>
 
 <script>
-
-import AuthorsTable from '@/components/example/AuthorsTable.vue';
-import ProjectsTable from '@/components/example/ProjectsTable.vue';
-import d$todo from '@/stores/dashboard/todo';
-import { mapActions, mapState } from 'pinia';
-import ArgonButton from '../../components/ArgonButton.vue';
-import BootstrapModal from '../../components/BootstrapModal.vue';
-import ArgonInput from '../../components/ArgonInput.vue';
-import ArgonPagination from '../../components/ArgonPagination.vue';
-import ArgonPaginationItem from '../../components/ArgonPaginationItem.vue';
-
+import AuthorsTable from "@/components/example/AuthorsTable.vue";
+import ProjectsTable from "@/components/example/ProjectsTable.vue";
+import d$todo from "@/stores/dashboard/todo";
+import { mapActions, mapState } from "pinia";
+import ArgonButton from "../../components/ArgonButton.vue";
+import BootstrapModal from "../../components/BootstrapModal.vue";
+import ArgonInput from "../../components/ArgonInput.vue";
+import ArgonPagination from "../../components/ArgonPagination.vue";
+import ArgonPaginationItem from "../../components/ArgonPaginationItem.vue";
 
 export default {
-  name: 'tables',
+  name: "tables",
   components: {
     AuthorsTable,
     ProjectsTable,
@@ -127,24 +176,22 @@ export default {
     return {
       //input
       input: {
-        name: '',
-        description: '',
-        category: '',
+        name: "",
+        description: "",
+        category: "",
       },
     };
   },
   computed: {
-    ...mapState(d$todo, ['g$list']),
+    ...mapState(d$todo, ["g$list"]),
   },
   methods: {
-    ...mapActions(d$todo, ['a$list']),
-    ...mapActions(d$todo, ['a$add']),
-    ...mapActions(d$todo, ['a$del']),
+    ...mapActions(d$todo, ["a$list", "a$add", "a$del"]),
     async getList() {
       try {
         await this.a$list;
       } catch (error) {
-        console.error('method getlist error', error);
+        console.error("method getlist error", error);
       }
     },
     async onSubmit() {
@@ -152,20 +199,20 @@ export default {
         await this.a$add({ ...this.input });
         this.$router.go(this.$router.currentRoute);
       } catch (error) {
-        console.error('method addlist error', error);
+        console.error("method addlist error", error);
       }
     },
     async deleteTodo(idTodo) {
       try {
-        if (confirm('Do you want to delete this data?') == true) {
+        if (confirm("Do you want to delete this data?") == true) {
           await this.a$del(idTodo);
-          alert('Delete Successfully');
+          alert("Delete Successfully");
           this.$router.go(this.$router.currentRoute);
         } else {
           this.$router.go(this.$router.currentRoute);
         }
       } catch (error) {
-        console.error(' error', error);
+        console.error(" error", error);
       }
     },
   },
