@@ -1,5 +1,8 @@
 <template>
-  <ul class="pagination" :class="getClasses(color, size)">
+  <ul
+    class="pagination justify-content-center"
+    :class="getClasses(color, size)"
+  >
     <slot />
   </ul>
 </template>
