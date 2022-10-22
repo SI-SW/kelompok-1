@@ -16,6 +16,12 @@ const dashboard = {
       meta: { auth: true },
     },
     {
+      path: "tables/:id",
+      name: "update",
+      component: () => import("@/views/Dashboard/updateTodo.vue"),
+      meta: { auth: true },
+    },
+    {
       path: "billing",
       name: "Billing",
       component: () => import("@/views/Dashboard/Billing.vue"),
