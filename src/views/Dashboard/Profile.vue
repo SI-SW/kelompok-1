@@ -216,13 +216,21 @@
                   <label for="example-text-input" class="form-control-label"
                     >Username</label
                   >
-                  <argon-input type="text" value="lucky.jesse" />
+                  <argon-input
+                    type="text"
+                    value="lucky.jesse"
+                    v-model="g$user.name"
+                  />
                 </div>
                 <div class="col-md-6">
                   <label for="example-text-input" class="form-control-label"
                     >Email address</label
                   >
-                  <argon-input type="email" value="jesse@example.com" />
+                  <argon-input
+                    type="email"
+                    value="jesse@example.com"
+                    v-model="g$user.id"
+                  />
                 </div>
                 <div class="col-md-6">
                   <label for="example-text-input" class="form-control-label"

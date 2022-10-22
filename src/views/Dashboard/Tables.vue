@@ -102,11 +102,18 @@
                     </td>
                     <td class="align-middle">
                       <div class="ms-auto text-center">
-                        <RouterLink class="btn btn-brand ms-lg-3 "
-                          :to="{ name: 'update', params: { id: item.id }}"> <i class="fas fa-pencil-alt text-dark me-2"
-                            aria-hidden="true"></i>Edit</RouterLink>
+                        <RouterLink
+                          class="btn btn-brand ms-lg-3"
+                          :to="{ name: 'update', params: { id: item.id } }"
+                        >
+                          <i
+                            class="fas fa-pencil-alt text-dark me-2"
+                            aria-hidden="true"
+                          ></i
+                          >Edit</RouterLink
+                        >
                         <a
-                          class="btn btn-link text-danger text-gradient px-3 mb-0"
+                          class="btn btn-brand text-danger text-gradient ms-lg-2"
                           href="javascript:;"
                         >
                           <i
@@ -145,6 +152,7 @@ import BootstrapModal from "../../components/BootstrapModal.vue";
 import ArgonInput from "../../components/ArgonInput.vue";
 import ArgonPagination from "../../components/ArgonPagination.vue";
 import ArgonPaginationItem from "../../components/ArgonPaginationItem.vue";
+import { EMPTY_ARR } from "@vue/shared";
 
 export default {
   name: "tables",
