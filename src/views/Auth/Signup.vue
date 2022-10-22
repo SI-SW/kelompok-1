@@ -182,8 +182,10 @@
                 </div>
                 <p class="text-sm mt-3 mb-0">
                   Already have an account?
-                  <a href="signin" class="text-dark font-weight-bolder"
-                    >Sign in</a
+                  <router-link
+                    to="/auth/signin"
+                    class="text-dark font-weight-bolder"
+                    >Sign in</router-link
                   >
                 </p>
               </form>
