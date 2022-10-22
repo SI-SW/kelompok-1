@@ -6,7 +6,7 @@
           <div class="card-header pb-0">
             <div class="row">
               <div class="col-6">
-                <h6>To Do List Table</h6>
+                <h6>Nama Kelompok 1</h6>
               </div>
               <div class="col-6 text-end">
                 <form @submit.prevent="onSubmit" method="post">
@@ -93,12 +93,31 @@
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs text-secondary mb-0">
+                      <h6 class="text-xs text-secondary mb-0">
                         {{ item.description }}
-                      </p>
+                      </h6>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td
+                      class="align-middle text-center text-sm"
+                      v-if="item.status === 'todo'"
+                    >
                       <span class="badge badge-sm bg-gradient-primary">{{
+                        item.status
+                      }}</span>
+                    </td>
+                    <td
+                      class="align-middle text-center text-sm"
+                      v-else-if="item.status === 'done'"
+                    >
+                      <span class="badge badge-sm bg-gradient-success">{{
+                        item.status
+                      }}</span>
+                    </td>
+                    <td
+                      class="align-middle text-center text-sm"
+                      v-else="item.status === 'pending'"
+                    >
+                      <span class="badge badge-sm bg-gradient-warning">{{
                         item.status
                       }}</span>
                     </td>

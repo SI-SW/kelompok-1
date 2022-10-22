@@ -132,6 +132,7 @@ export default {
     logout() {
       try {
         if (confirm("Are you sure you want to leave?") == true) {
+          this.$router.go(this.$router.currentRoute);
           this.a$logout();
         } else {
           this.$router.replace(this.$router.currentRoute);
