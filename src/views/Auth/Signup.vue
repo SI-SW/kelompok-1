@@ -144,9 +144,25 @@
             </div>
             <div class="card-body">
               <form @submit.prevent="handleSubmit" role="form">
-                <argon-input type="text" placeholder="Name" name="name" v-model="this.input.name"  aria-label="Name" />
-                <argon-input type="email" placeholder="Email" v-model="this.input.email" aria-label="Email" />
-                <argon-input type="password" placeholder="Password" v-model="this.input.password" aria-label="Password" />
+                <argon-input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  v-model="this.input.name"
+                  aria-label="Name"
+                />
+                <argon-input
+                  type="email"
+                  placeholder="Email"
+                  v-model="this.input.email"
+                  aria-label="Email"
+                />
+                <argon-input
+                  type="password"
+                  placeholder="Password"
+                  v-model="this.input.password"
+                  aria-label="Password"
+                />
                 <argon-checkbox checked>
                   <label class="form-check-label" for="flexCheckDefault">
                     I agree the
@@ -211,17 +227,16 @@ export default {
     };
   },
   methods: {
-
     ...mapActions(d$auth, ["a$register"]),
-    async handleSubmit(){
+    async handleSubmit() {
       try {
         await this.a$register({ ...this.input });
-          alert("Register Successfully");
-          this.$router.push('signin') 
+        alert("Register Successfully");
+        this.$router.push("signin");
       } catch (error) {
         console.error("method addlist error", error);
       }
-    }
+    },
     // async handleSubmit() {
     //   const data = {
     //     name: this.name,
@@ -236,12 +251,12 @@ export default {
     //     .post("https://be.tautan.ml/auth/register", data, { headers })
     //     .then((res) => {
     //       alert("Register Successfully");
-    //       this.$router.push('signin') 
+    //       this.$router.push('signin')
     //     })
     //     .catch((err) => {
     //       console.log(err);
     //     });
-      
+
     //     console.log(response);
     // },
   },
