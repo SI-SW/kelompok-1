@@ -24,6 +24,17 @@
                     v-model="input.description"
                   />
                 </label>
+                <label for="description"
+                  >Status
+                  <select v-model="input.status" class="form-select">
+                    <option value="" selected hidden disabled>Options</option>
+                    <template v-for="item in dropdown.status" :key="item">
+                      <option :value="item">
+                        {{ item }}
+                      </option>
+                    </template>
+                  </select>
+                </label>
                 <right>
                   <div class="col-3">
                     <div class="text-center">
@@ -66,6 +77,11 @@ export default {
         id: "",
         name: "",
         description: "",
+        status: "",
+      },
+      // status
+      dropdown: {
+        status: ["todo", "done", "pending"],
       },
     };
   },
@@ -83,6 +99,7 @@ export default {
           {
             name: this.input.name,
             description: this.input.description,
+            status: this.input.status,
           },
           dataId
         );
