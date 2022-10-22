@@ -12,33 +12,16 @@
                 <form @submit.prevent="onSubmit" method="post" onclick="">
                   <BootstrapModal :visible="false" variant="dark">
                     <template v-slot:body>
-                      <ArgonInput
-                        type="text"
-                        v-model="input.name"
-                        placeholder="input name"
-                        name="name"
-                        size="md"
-                      />
-                      <ArgonInput
-                        type="text"
-                        v-model="input.description"
-                        placeholder="input description"
-                        name="description"
-                        size="md"
-                      />
-                      <ArgonInput
-                        type="text"
-                        v-model="input.category"
-                        placeholder="input category"
-                        name="category"
-                        size="md"
-                      />
+                      <ArgonInput type="text" v-model="input.name" placeholder="input name" name="name" size="md" />
+                      <ArgonInput type="text" v-model="input.description" placeholder="input description"
+                        name="description" size="md" />
+                      <ArgonInput type="text" v-model="input.category" placeholder="input category" name="category"
+                        size="md" />
                     </template>
                     <template v-slot:footer>
                       <button type="submit" class="btn btn-primary">
                         Submit
-                      </button></template
-                    >
+                      </button></template>
                   </BootstrapModal>
                 </form>
               </div>
@@ -49,29 +32,19 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th
-                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    >
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                       Nama
                     </th>
-                    <th
-                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                    >
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                       Description
                     </th>
-                    <th
-                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    >
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                       Status
                     </th>
-                    <th
-                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    >
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                       Create At
                     </th>
-                    <th
-                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                    >
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                       Action
                     </th>
                   </tr>
@@ -92,35 +65,23 @@
                     </td>
                     <td class="align-middle text-center text-sm">
                       <span class="badge badge-sm bg-gradient-primary">{{
-                        item.status
+                      item.status
                       }}</span>
                     </td>
                     <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold">{{
-                        item.createdAt
+                      item.createdAt
                       }}</span>
                     </td>
                     <td class="align-middle">
                       <div class="ms-auto text-center">
-                        <a
-                          class="btn btn-link text-dark px-3 mb-0"
-                          href="javascript:;"
-                        >
-                          <i
-                            class="fas fa-pencil-alt text-dark me-2"
-                            aria-hidden="true"
-                          ></i
-                          >Edit
-                        </a>
-                        <a
-                          class="btn btn-link text-danger text-gradient px-3 mb-0"
-                          href="javascript:;"
-                        >
-                          <i
-                            class="far fa-trash-alt me-2"
-                            aria-hidden="true"
-                          ></i
-                          >Delete
+                        <RouterLink class="btn btn-brand ms-lg-3 "
+                          :to="{ name: 'update', params: { id: item.id }}"> <i class="fas fa-pencil-alt text-dark me-2"
+                            aria-hidden="true"></i>Edit</RouterLink>
+                        <!-- <RouterLink class="btn btn-brand ms-lg-3 text-danger "
+                          :to="{ name: 'none', params: { id: item.id }}">  <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</RouterLink> -->
+                        <a class="btn btn-brand ms-lg-3 text-danger" href="javascript:;">
+                          <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
                         </a>
                       </div>
                     </td>
@@ -196,6 +157,10 @@ export default {
   },
   computed: {
     ...mapState(d$todo, ["g$list"]),
+    // ...mapState(d$todo, ["g$detail"]),
+    // detail(){
+    //         return this.g$detail(this.$route.params.id);
+    //     }
   },
   methods: {
     ...mapActions(d$todo, ["a$list"]),

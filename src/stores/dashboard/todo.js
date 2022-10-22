@@ -43,6 +43,14 @@ const d$todo = defineStore({
         throw e;
       }
     },
+    async a$update( body, id) {
+      try {
+        await s$todo.update(body, id);
+      } catch (e) {
+        console.error("update error", e);
+        throw e;
+      }
+    },
     // async a$add(body) {
     //   try {
     //     const { data } = await s$todo.add(body);
@@ -61,6 +69,10 @@ const d$todo = defineStore({
       category,
     }),
     g$list: ({ list }) => list,
+    g$detail: ({ list }) => {
+      return(id) => list.find((x) => x.id == id);
+      
+  }
   },
 });
 
