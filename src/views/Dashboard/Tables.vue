@@ -9,7 +9,7 @@
                 <h6>To Do List Table</h6>
               </div>
               <div class="col-6 text-end">
-                <form @submit.prevent="onSubmit" method="post" onclick="">
+                <form @submit.prevent="onSubmit" method="post">
                   <BootstrapModal :visible="false" variant="dark">
                     <template v-slot:body>
                       <ArgonInput
