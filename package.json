@@ -1,8 +1,8 @@
 {
-  "name": "vue-argon-dashboard-2",
+  "name": "kelompok-1",
   "version": "3.0.0",
   "private": true,
-  "author": "Creative Tim",
+  "author": "Kelompok 1",
   "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
   "description": "VueJS version of Argon Dashboard 2 by Creative Tim",
   "homepage": "https://demos.creative-tim.com/vue-argon-dashboard/",
@@ -41,5 +41,6 @@
     "prettier": "2.7.1",
     "sass": "1.54.9",
     "vite": "3.1.0"
-  }
+  },
+  "main": ".eslintrc.js"
 }
